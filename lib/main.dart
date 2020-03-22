@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/question.dart';
+import 'package:quizzler/quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() =>
     runApp(MaterialApp(
@@ -15,24 +17,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
 
   List<Icon> scoreKeeper = [];
-
-  List<Question> questionBank = [
-    Question(q: 'The sun rises from the east', a: true),
-    Question(q: 'All dogs are tigers in origin', a: false),
-    Question(q: 'Funny games are always supper funny', a: true),
-    Question(q: 'The sun rises from the east', a: true),
-    Question(q: 'All dogs are tigers in origin', a: false),
-    Question(q: 'The sun rises from the east', a: true),
-    Question(q: 'All dogs are tigers in origin', a: false),
-    Question(q: 'The sun rises from the east', a: true),
-    Question(q: 'All dogs are tigers in origin', a: false),
-    Question(q: 'The sun rises from the east', a: true),
-    Question(q: 'All dogs are tigers in origin', a: false),
-    Question(q: 'The sun rises from the east', a: true),
-    Question(q: 'All dogs are tigers in origin', a: false),
-    Question(q: 'The sun rises from the east', a: true),
-    Question(q: 'All dogs are tigers in origin', a: false),
-  ];
   int questionNumber = 0;
 
   @override
@@ -44,7 +28,7 @@ class _QuizPageState extends State<QuizPage> {
           //for the question
           Expanded(flex: 5,
             child: Center(child: Text(
-              questionBank[questionNumber].questionText, textAlign: TextAlign.center,
+              quizBrain.questionBank[questionNumber].questionText, textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,),),),),
@@ -67,7 +51,7 @@ class _QuizPageState extends State<QuizPage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 20,),),
                           onPressed: () {
-                            bool correctAnswer = questionBank[questionNumber].questionAnswer;
+                            bool correctAnswer = quizBrain.questionBank[questionNumber].questionAnswer;
                             if (correctAnswer == true) {
                               setState(() {
                                 scoreKeeper.add(
@@ -93,7 +77,7 @@ class _QuizPageState extends State<QuizPage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 20,),),
                           onPressed: () {
-                            bool correctAnswer = questionBank[questionNumber].questionAnswer;
+                            bool correctAnswer = quizBrain.questionBank[questionNumber].questionAnswer;
                             if (correctAnswer == false) {
                               setState(() {
                                 scoreKeeper.add(
